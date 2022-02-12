@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Meu Diário</title>
+    <link rel="stylesheet" href="{% static 'css/diary.css' %}">
+</head>
+
+<body>
+    <h1><a href="/">Caro diário …</a></h1>
+
+    {% block content %}{% endblock %}
+
+</body>
+
+</html>
