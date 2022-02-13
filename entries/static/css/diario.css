@@ -114,3 +114,18 @@ input[type="submit"] {
 .Friday{
     background-color: rgb(253, 255, 122);
 }
+
+/* Messages */
+
+.messages {
+    padding: 0;
+    list-style: none;
+}
+
+.message {
+    width: 100%;
+    background: lightblue;
+    padding: 1rem;
+    text-align: center;
+    margin: 1rem 0;
+}
