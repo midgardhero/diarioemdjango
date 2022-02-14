@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
@@ -11,24 +12,27 @@ from django.views.generic import (
 
 from .models import Entry
 
+class LockedView(LoginRequiredMixin):
+    login_url = "admin:login"
 
-class EntryListView(ListView):
+
+class EntryListView(LockedView, ListView):
     model = Entry
     queryset = Entry.objects.all().order_by("-date_created")
 
 
-class EntryDetailView(DetailView):
+class EntryDetailView(LockedView, DetailView):
     model = Entry
 
 
-class EntryCreateView(SuccessMessageMixin, CreateView):
+class EntryCreateView(LockedView, SuccessMessageMixin, CreateView):
     model = Entry
     fields = ['title', 'content']
     sucess_url = reverse_lazy('entry-list')
     success_message = "mensagem criada!"
 
 
-class EntryUpdateView(SuccessMessageMixin, UpdateView):
+class EntryUpdateView(LockedView, SuccessMessageMixin, UpdateView):
     model = Entry
     fields = ["title", "content"]
     success_message = "mensagem salva!"
@@ -37,7 +41,7 @@ class EntryUpdateView(SuccessMessageMixin, UpdateView):
         return reverse_lazy("entry-detail", kwargs={"pk": self.object.pk})
 
 
-class EntryDeleteView(DeleteView):
+class EntryDeleteView(LockedView, DeleteView):
     model = Entry
     success_url = reverse_lazy("entry-list")
     success_message = "mensagem apagada!"

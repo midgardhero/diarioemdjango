@@ -3,7 +3,7 @@
 {% block content %}
     <article>
         <h2 class="mark">{% now "Y-m-d H:i" %}</em></h2>
-        <a href="{% url 'entry-create' %}"><button>nova mensagem</button></a>
+        <a href="{% url 'entry-create' %}"><button>Adicione nova mensagem</button></a>
     </article>
     {% for entry in entry_list %}
         <article>
