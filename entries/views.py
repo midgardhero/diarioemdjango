@@ -1,5 +1,4 @@
 from pyexpat import model
-from attr import fields
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render

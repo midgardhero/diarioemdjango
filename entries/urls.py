@@ -18,7 +18,7 @@ urlpatterns = [
     path(
         "create",
         views.EntryCreateView.as_view(),
-        name="entry_create"
+        name="entry-create"
     ),
     path(
         "entry/<int:pk>/update",
