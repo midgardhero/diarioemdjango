@@ -1,7 +1,10 @@
+from http.client import HTTPResponse
+from re import template
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import render
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.urls import reverse_lazy
 from django.views.generic import (
     ListView,
@@ -10,10 +13,15 @@ from django.views.generic import (
     UpdateView,
     DeleteView,
 )
-
 from .models import Entry
 
-class LockedView(LoginRequiredMixin, render):
+def edit_blog(request):
+    template = get_template('entry_list.html')
+    moods = Mood.objects.all()
+    html = template.render(locals())
+    return HTTPResponse(html)
+
+class LockedView(LoginRequiredMixin):
     login_url = "admin:login"
 
 
