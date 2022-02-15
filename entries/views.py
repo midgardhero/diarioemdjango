@@ -13,7 +13,7 @@ from django.views.generic import (
 
 from .models import Entry
 
-class LockedView(LoginRequiredMixin):
+class LockedView(LoginRequiredMixin, render):
     login_url = "admin:login"
 
 
